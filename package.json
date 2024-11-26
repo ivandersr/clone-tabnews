@@ -10,8 +10,8 @@
     "services:stop": "docker compose -f infra/compose.yml stop",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
-    "test": "jest",
-    "test:watch": "jest --watchAll",
+    "test": "jest --runInBand",
+    "test:watch": "jest --watchAll --runInBand",
     "service:start": "docker compose -f infra/compose.yml up --force-recreate -d",
     "migration:create": "node-pg-migrate -m infra/migrations create",
     "migration:up": "node-pg-migrate -m infra/migrations --envPath .env.development up",
@@ -21,6 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^16.4.5",
+    "dotenv-expand": "^12.0.1",
     "next": "^15.0.3",
     "node-pg-migrate": "^7.8.0",
     "pg": "^8.13.1",
