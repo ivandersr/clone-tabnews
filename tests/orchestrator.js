@@ -7,7 +7,9 @@ async function waitForAllServices() {
     return retry(fetchStatusPage, {
       retries: 50,
       onRetry: (error, attempt) => {
-        console.log(`Attempt ${attempt} - Failed to fetch status page - ${error}`);
+        console.log(
+          `Attempt ${attempt} - Failed to fetch status page - ${error}`,
+        );
       },
       maxTimeout: 1000,
     });
@@ -19,7 +21,7 @@ async function waitForAllServices() {
           throw new Error(`HTTP error ${response.status}`);
         }
         await response.json();
-      } catch(err) {
+      } catch (err) {
         throw err;
       }
     }
