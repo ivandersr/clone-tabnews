@@ -5,13 +5,23 @@ async function waitForAllServices() {
 
   async function waitForWebserver() {
     return retry(fetchStatusPage, {
-      retries: 100,
+      retries: 50,
+      onRetry: (error, attempt) => {
+        console.log(`Attempt ${attempt} - Failed to fetch status page - ${error}`);
+      },
       maxTimeout: 1000,
     });
 
     async function fetchStatusPage() {
-      const response = await fetch("http://localhost:3000/api/v1/status");
-      await response.json();
+      try {
+        const response = await fetch("http://localhost:3000/api/v1/status");
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}`);
+        }
+        await response.json();
+      } catch(err) {
+        throw err;
+      }
     }
   }
 }
