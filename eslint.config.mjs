@@ -6,14 +6,26 @@ import { FlatCompat } from "@eslint/eslintrc";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all,
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+  allConfig: js.configs.all,
 });
-const config = [...compat.extends(
-    "next/core-web-vitals", 
+const config = [
+  ...compat.extends(
+    "next/core-web-vitals",
     "eslint:recommended",
     "plugin:jest/recommended",
-    "prettier"
-)];
+    "prettier",
+  ),
+  {
+    rules: {
+      "no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+        },
+      ],
+    },
+  },
+];
 export default config;
