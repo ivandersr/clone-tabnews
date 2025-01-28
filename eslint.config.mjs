@@ -18,6 +18,9 @@ const config = [
     "prettier",
   ),
   {
+    ignores: [".next/*"],
+  },
+  {
     rules: {
       "no-unused-vars": [
         "error",
