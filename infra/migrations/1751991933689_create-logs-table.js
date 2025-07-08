@@ -9,15 +9,15 @@ exports.shorthands = undefined;
  * @returns {Promise<void> | void}
  */
 exports.up = (pgm) => {
-    pgm.createTable("logs", {
-        id: 'id',
-        content: { type: 'json', notNull: true },
-        createdAt: {
-            type: 'timestamp',
-            notNull: true,
-            default: pgm.func('current_timestamp'),
-        }
-    })
+  pgm.createTable("logs", {
+    id: "id",
+    content: { type: "json", notNull: true },
+    createdAt: {
+      type: "timestamp",
+      notNull: true,
+      default: pgm.func("current_timestamp"),
+    },
+  });
 };
 
 /**
@@ -26,5 +26,5 @@ exports.up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 exports.down = (pgm) => {
-    pgm.dropTable("logs");
+  pgm.dropTable("logs");
 };
