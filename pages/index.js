@@ -1,5 +1,5 @@
 function Home() {
-  return <h1 style={{ fontFamily: "Helvetica" }}>Se leu, mamou</h1>;
+  return <h1 style={{ fontFamily: "Helvetica" }}>Olá!</h1>;
 }
 
 export default Home;
