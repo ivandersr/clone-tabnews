@@ -18,15 +18,15 @@ export default async function cenprot(request, response) {
       });
     }
 
-    if (request.method === "POST") {
-      const log = request.body;
-      await database.query({
-        text: "INSERT INTO logs (content) VALUES ($1);",
-        values: [JSON.stringify(log)],
-      });
+    // if (request.method === "POST") {
+    //   const log = request.body;
+    //   await database.query({
+    //     text: "INSERT INTO logs (content) VALUES ($1);",
+    //     values: [JSON.stringify(log)],
+    //   });
 
-      return response.status(201).json([]);
-    }
+    //   return response.status(201).json([]);
+    // }
   } catch (err) {
     const publicErrorObject = new InternalServerError({
       cause: err,
