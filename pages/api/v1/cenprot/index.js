@@ -10,7 +10,7 @@ export default async function cenprot(request, response) {
   try {
     if (request.method === "GET") {
       const result = await database.query({
-        text: "SELECT id, content FROM logs;",
+        text: "SELECT id, content, createdAt FROM logs;",
       });
 
       response.status(200).json({
@@ -18,15 +18,15 @@ export default async function cenprot(request, response) {
       });
     }
 
-    if (request.method === "POST") {
-      const log = request.body;
-      await database.query({
-        text: "INSERT INTO logs (content) VALUES ($1);",
-        values: [JSON.stringify(log)],
-      });
+    // if (request.method === "POST") {
+    //   const log = request.body;
+    //   await database.query({
+    //     text: "INSERT INTO logs (content) VALUES ($1);",
+    //     values: [JSON.stringify(log)],
+    //   });
 
-      return response.status(201).json([]);
-    }
+    //   return response.status(201).json([]);
+    // }
   } catch (err) {
     const publicErrorObject = new InternalServerError({
       cause: err,
