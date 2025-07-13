@@ -7,7 +7,7 @@ const defaultMigrationOptions = {
   direction: "up",
   verbose: true,
   migrationsTable: "pgmigrations",
-};  
+};
 
 async function listPendingMigrations() {
   let dbClient;
