@@ -8,7 +8,7 @@ exports.up = (pgm) => {
     username: {
       type: "varchar(30)",
       notNull: true,
-      unique: true,      
+      unique: true,
     },
     // max length for any email
     email: {
