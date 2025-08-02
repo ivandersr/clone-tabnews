@@ -75,7 +75,8 @@ export class NotFoundError extends Error {
   constructor({ cause, message, action }) {
     super(message || "Não encontrado", { cause });
     this.name = "NotFoundError";
-    this.action = action || "Verifique se os dados enviados na consulta estão corretos";
+    this.action =
+      action || "Verifique se os dados enviados na consulta estão corretos";
     this.statusCode = 404;
   }
 
