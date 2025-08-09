@@ -10,16 +10,10 @@ beforeAll(async () => {
 describe("GET /api/v1/users/[username]", () => {
   describe("Anonymous user", () => {
     test("With valid username, matching exact case", async () => {
-      await fetch("http://localhost:3000/api/v1/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "test.user.get",
-          email: "test.user.get@mail.com",
-          password: "123abc",
-        }),
+      await orchestrator.createUser({
+        username: "test.user.get",
+        email: "test.user.get@mail.com",
+        password: "123abc",
       });
 
       const response = await fetch(
@@ -44,16 +38,10 @@ describe("GET /api/v1/users/[username]", () => {
     });
 
     test("With valid username, with case mismatch", async () => {
-      await fetch("http://localhost:3000/api/v1/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "test.case.mismatch",
-          email: "test.case.Mismatch@mail.com",
-          password: "123abc",
-        }),
+      await orchestrator.createUser({
+        username: "test.case.mismatch",
+        email: "test.case.Mismatch@mail.com",
+        password: "123abc",
       });
 
       const response = await fetch(
