@@ -41,8 +41,14 @@ describe("POST /api/v1/users", () => {
       });
 
       const userInDatabase = await user.findOneByUsername("test.user2");
-      const correctPasswordMatch = await password.compare("123abc", userInDatabase.password);
-      const incorrectPasswordMatch = await password.compare("incorrectpassword", userInDatabase.password);
+      const correctPasswordMatch = await password.compare(
+        "123abc",
+        userInDatabase.password,
+      );
+      const incorrectPasswordMatch = await password.compare(
+        "incorrectpassword",
+        userInDatabase.password,
+      );
 
       expect(correctPasswordMatch).toBe(true);
       expect(incorrectPasswordMatch).toBe(false);
