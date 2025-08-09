@@ -55,21 +55,13 @@ describe("POST /api/v1/users", () => {
     });
 
     test("With duplicated email", async () => {
-      const response = await fetch("http://localhost:3000/api/v1/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "test.duplicated.email",
-          email: "test.email.duplicated@mail.com",
-          password: "123abc",
-        }),
+      await orchestrator.createUser({
+        username: "test.duplicated.email",
+        email: "test.email.duplicated@mail.com",
+        password: "123abc",
       });
 
-      expect(response.status).toBe(201);
-
-      const response2 = await fetch("http://localhost:3000/api/v1/users", {
+      const response = await fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,9 +73,9 @@ describe("POST /api/v1/users", () => {
         }),
       });
 
-      expect(response2.status).toBe(400);
+      expect(response.status).toBe(400);
 
-      const responseBody = await response2.json();
+      const responseBody = await response.json();
 
       expect(responseBody).toEqual({
         name: "ValidationError",
@@ -94,21 +86,13 @@ describe("POST /api/v1/users", () => {
     });
 
     test("With duplicated username", async () => {
-      const response = await fetch("http://localhost:3000/api/v1/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "test.duplicated.username",
-          email: "test.user.duplicated@mail.com",
-          password: "123abc",
-        }),
+      await orchestrator.createUser({
+        username: "test.duplicated.username",
+        email: "test.user.duplicated@mail.com",
+        password: "123abc",
       });
 
-      expect(response.status).toBe(201);
-
-      const response2 = await fetch("http://localhost:3000/api/v1/users", {
+      const response = await fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -120,9 +104,9 @@ describe("POST /api/v1/users", () => {
         }),
       });
 
-      expect(response2.status).toBe(400);
+      expect(response.status).toBe(400);
 
-      const responseBody = await response2.json();
+      const responseBody = await response.json();
 
       expect(responseBody).toEqual({
         name: "ValidationError",
