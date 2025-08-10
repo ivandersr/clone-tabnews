@@ -10,7 +10,7 @@ export default async function cenprot(request, response) {
   try {
     if (request.method === "GET") {
       const result = await database.query({
-        text: "SELECT id, content, createdAt FROM logs;",
+        text: "SELECT id, content, created_at FROM logs;",
       });
 
       response.status(200).json({
